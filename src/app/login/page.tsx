@@ -41,32 +41,48 @@ export default function LoginPage(){
     },[user])
 
     return (
-        <div className="flex flex-col items-center justify-center min-h-screen py-2">
-        <h1>{loading ? "Processing" : "Login"}</h1>
-        <hr />
-        
-        <label htmlFor="email">email</label>
-        <input 
-        className="p-2 border border-gray-300 rounded-lg mb-4 focus:outline-none focus:border-gray-600 bg-amber-50 text-black"
-            id="email"
-            type="text"
-            value={user.email}
-            onChange={(e) => setUser({...user, email: e.target.value})}
-            placeholder="email"
-            />
-        <label htmlFor="password">password</label>
-        <input 
-        className="p-2 border border-gray-300 rounded-lg mb-4 focus:outline-none bg-amber-50 focus:border-gray-600 text-black"
-            id="password"
-            type="password"
-            value={user.password}
-            onChange={(e) => setUser({...user, password: e.target.value})}
-            placeholder="password"
-            />
+        <div className="flex flex-col items-center justify-center min-h-screen py-2 px-4">
+        <div className="w-full max-w-md bg-white rounded-2xl shadow-xl p-8 dark:bg-slate-900">
+            <h1 className="text-3xl font-bold mb-2 text-center text-blue-600">{loading ? "Processing..." : "Welcome Back"}</h1>
+            <p className="text-center text-gray-600 dark:text-gray-400 mb-6">Sign in to your account</p>
+            
+            <div className="space-y-4">
+                <div>
+                    <label htmlFor="email" className="block text-sm font-medium mb-2 text-gray-700 dark:text-gray-300">Email</label>
+                    <input 
+                        className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 dark:bg-slate-800 dark:border-slate-600 dark:text-white"
+                        id="email"
+                        type="email"
+                        value={user.email}
+                        onChange={(e) => setUser({...user, email: e.target.value})}
+                        placeholder="your@email.com"
+                    />
+                </div>
+                <div>
+                    <label htmlFor="password" className="block text-sm font-medium mb-2 text-gray-700 dark:text-gray-300">Password</label>
+                    <input 
+                        className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 dark:bg-slate-800 dark:border-slate-600 dark:text-white"
+                        id="password"
+                        type="password"
+                        value={user.password}
+                        onChange={(e) => setUser({...user, password: e.target.value})}
+                        placeholder="••••••••"
+                    />
+                </div>
+            </div>
+            
             <button
-            onClick={onLogin}
-            className="p-2 border border-gray-300 rounded-lg mb-4 focus:outline-none focus:border-gray-600">{buttonDisabled ? "No Login" : "Login"}</button>
-            <Link href="/signup">Visit Signup page</Link>
+                onClick={onLogin}
+                disabled={buttonDisabled}
+                className="w-full mt-6 py-3 bg-blue-600 text-white font-semibold rounded-lg hover:bg-blue-700 disabled:opacity-50 disabled:cursor-not-allowed transition-colors"
+            >
+                {buttonDisabled ? "Enter credentials" : "Sign In"}
+            </button>
+            
+            <p className="text-center mt-6 text-gray-600 dark:text-gray-400">
+                Don't have an account? <Link href="/signup" className="text-blue-600 hover:underline font-semibold">Sign up</Link>
+            </p>
+        </div>
         </div>
     )
 }

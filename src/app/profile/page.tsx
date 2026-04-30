@@ -26,25 +26,38 @@ export default function profilePage() {
     }
 
     return (
-        <div className="flex flex-col items-center justify-center min-h-screen py-2">
-            <h1>Profile</h1>
-            <hr />
-            <p>Profile page</p>
-            <hr />
-            <h2 className="p-1 rounded bg-green-500">{data === 'nothing' ? "Nothing" : <Link href={`/profile/${data}`}>{data}
-            </Link>}</h2>
-            <hr />
-            <button
-                onClick={logout}
-                className="bg-blue-500 mt-4 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
-            >Logout</button>
-
-            <button
-                onClick={getUserDetails}
-                className="bg-green-800 mt-4 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
-            >GetUser Details</button>
-
-
+        <div className="flex flex-col items-center justify-center min-h-screen py-2 px-4">
+            <div className="w-full max-w-md bg-white rounded-2xl shadow-xl p-8 dark:bg-slate-900">
+                <h1 className="text-3xl font-bold mb-2 text-center text-blue-600">Profile</h1>
+                <p className="text-center text-gray-600 dark:text-gray-400 mb-6">Manage your account</p>
+                
+                <div className="bg-blue-50 dark:bg-slate-800 rounded-lg p-4 mb-6 border border-blue-200 dark:border-slate-700">
+                    <p className="text-sm text-gray-600 dark:text-gray-400 mb-2">User ID:</p>
+                    {data === 'nothing' ? (
+                        <p className="text-gray-400 italic">Click "Load Profile" to view your ID</p>
+                    ) : (
+                        <Link href={`/profile/${data}`} className="text-blue-600 hover:underline font-semibold break-all">
+                            {data}
+                        </Link>
+                    )}
+                </div>
+                
+                <div className="space-y-3">
+                    <button
+                        onClick={getUserDetails}
+                        className="w-full py-3 bg-blue-600 text-white font-semibold rounded-lg hover:bg-blue-700 transition-colors"
+                    >
+                        Load Profile
+                    </button>
+                    
+                    <button
+                        onClick={logout}
+                        className="w-full py-3 bg-red-600 text-white font-semibold rounded-lg hover:bg-red-700 transition-colors"
+                    >
+                        Logout
+                    </button>
+                </div>
+            </div>
         </div>
     )
 }
